@@ -88,9 +88,24 @@ public class DataReader {
         String ln = br.readLine();
         List<String> first_line = Arrays.asList(ln.split(","));
         int[] index_list = new int[fields.length];
+        // Add new data entry representing the fields
+        String[] first_entry = new String[fields.length];
+        String item;
         for (int i = 0; i < fields.length; i++) {
             index_list[i] = first_line.indexOf(fields[i]); // Finding field name in first line
+            // For appending to the first data entry
+            String[] tokens = fields[i].split("_");
+            item = "";
+            for (int j = 0; j < tokens.length; j++) {
+                item += tokens[j];
+                if (j < tokens.length - 1)
+                    item += " ";
+            }
+            first_entry[i] = item;
         }
+        // Add the first entry to data representing fields
+        data.add(first_entry);
+    
 
         while ((ln = br.readLine()) != null) {
             String[] ln_arr = ln.split(",");
