@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Menu {
 
+    private static final Scanner sc = new Scanner(System.in);
     private static final String MENU_OPTIONS = """
         1 : Total Population
         2 : Parking Fines per Capita
@@ -15,7 +16,6 @@ public class Menu {
         0 : Exit""";
 
     public static int promptSelection() {
-        Scanner sc = new Scanner(System.in);
         int selection;
         while (true) {
             System.out.println(MENU_OPTIONS);
@@ -35,7 +35,6 @@ public class Menu {
     }
 
     public static int promptZipCode() {
-        Scanner sc = new Scanner(System.in);
         int zip_code;
         System.out.print("Enter zip code: ");
         String ln = sc.nextLine();
