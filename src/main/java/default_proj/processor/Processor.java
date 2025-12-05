@@ -72,5 +72,113 @@ public class Processor {
         return (int) Math.round(totalValue / count);
     }
 
+    public static int getAverageLivableArea(int zipCode) {
+        ArrayList<Property> propertyData = DataReader.getInstance().getPropertyData();
+        double totalArea = 0;
+        int count = 0;
+        for (Property p : propertyData) {
+            if (p.zip_code() != zipCode) {
+                continue;
+            }
+            if (p.livable_area() <= 0) {
+                continue;
+            }
+            totalArea += p.livable_area();
+            count++;
+        }
+        if (count == 0) {
+            return 0;
+        }
+        return (int) Math.round(totalArea / count);
+    }
+
+    public static int getMarketValuePerCapita(int zipCode) {
+        ArrayList<Property> propertyData = DataReader.getInstance().getPropertyData();
+        ArrayList<Population> populationData = DataReader.getInstance().getPopulationData();
+
+        double totalValue = 0;
+        for (Property p : propertyData) {
+            if (p.zip_code() != zipCode) {
+                continue;
+            }
+            if (p.market_value() <= 0) {
+                continue;
+            }
+            totalValue += p.market_value();
+        }
+
+        if (totalValue == 0) {
+            return 0;
+        }
+
+        int population = 0;
+        for (Population p : populationData) {
+            if (p.zip_code() == zipCode) {
+                population = p.value();
+                break;
+            }
+        }
+
+        if (population == 0) {
+            return 0;
+        }
+
+        return (int) Math.round(totalValue / population);
+    }
+
+    public static int getLivableAreaPerCapita(int zipCode) {
+        ArrayList<Property> propertyData = DataReader.getInstance().getPropertyData();
+        ArrayList<Population> populationData = DataReader.getInstance().getPopulationData();
+
+        double totalArea = 0;
+        for (Property p : propertyData) {
+            if (p.zip_code() != zipCode) {
+                continue;
+            }
+            if (p.livable_area() <= 0) {
+                continue;
+            }
+            totalArea += p.livable_area();
+        }
+
+        if (totalArea == 0) {
+            return 0;
+        }
+
+        int population = 0;
+        for (Population p : populationData) {
+            if (p.zip_code() == zipCode) {
+                population = p.value();
+                break;
+            }
+        }
+
+        if (population == 0) {
+            return 0;
+        }
+
+        return (int) Math.round(totalArea / population);
+    }
+
+    public static int getAverageValuePerSqFt(int zipCode) {
+        ArrayList<Property> propertyData = DataReader.getInstance().getPropertyData();
+        double totalValuePerSqFt = 0;
+        int count = 0;
+        for (Property p : propertyData) {
+            if (p.zip_code() != zipCode) {
+                continue;
+            }
+            if (p.market_value() <= 0 || p.livable_area() <= 0) {
+                continue;
+            }
+            totalValuePerSqFt += p.market_value() / p.livable_area();
+            count++;
+        }
+        if (count == 0) {
+            return 0;
+        }
+        return (int) Math.round(totalValuePerSqFt / count);
+    }
+
 }
 

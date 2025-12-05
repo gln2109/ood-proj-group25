@@ -11,8 +11,8 @@ public class Menu {
         3 : Average Residence Market Value for Zip Code
         4 : Average Residence Livable Area for Zip Code
         5 : Residential Market Value per Capita for Zip Code
-        6 : Option 6
-        7 : Option 7
+        6 : Total Livable Area per Capita for Zip Code
+        7 : Average Value per Square Foot for Zip Code
         0 : Exit""";
 
     public static int promptSelection() {

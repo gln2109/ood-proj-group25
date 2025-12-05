@@ -33,6 +33,18 @@ public class Main {
             } else if (selection == 3) {
                 int zip = Menu.promptZipCode();
                 System.out.println(Processor.getAverageMarketValue(zip));
+            } else if (selection == 4) {
+                int zip = Menu.promptZipCode();
+                System.out.println(Processor.getAverageLivableArea(zip));
+            } else if (selection == 5) {
+                int zip = Menu.promptZipCode();
+                System.out.println(Processor.getMarketValuePerCapita(zip));
+            } else if (selection == 6) {
+                int zip = Menu.promptZipCode();
+                System.out.println(Processor.getLivableAreaPerCapita(zip));
+            } else if (selection == 7) {
+                int zip = Menu.promptZipCode();
+                System.out.println(Processor.getAverageValuePerSqFt(zip));
             }
 
         }
